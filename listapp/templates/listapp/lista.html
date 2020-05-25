@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="{%static 'css/lista.css' %}">
+
+    </head>
+    <body>
+    <h1>{{lista}}</h1>
+
+        <form action="" method = "POST">
+        <div>
+        <table class="Tabla">
+            <tr >
+                <th>Comprado</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Tienda</th>
+                <th>Status</th>
+                <th>Fecha</th>
+                <th>Ad.info</th>
+                <th>DELETE</th>
+            </tr>
+                 {% for item in items %}
+            <tr>
+                <td><input type="checkbox" name="compra" value = "{{item.id}}"></td>
+                <td>{{item.name}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.store}}</td>
+                <td>{{item.status}}</td>
+                <td>{{item.date_created}}</td>
+                <td>{{item.aditional_info}}</td>
+                <td><input type="checkbox" name="delete" value = "{{item.id}}"></td>
+            </tr>
+                {% endfor %}
+
+        </table>
+        {% csrf_token %}
+        <label for"Producto">Producto:</label>
+        <input type="text" id="Producto" name="name" placeholder="Product Name">
+        <select id="quantity" name="quantity">
+        {% for n in '0123456101215'|make_list %}
+            <option value="{{forloop.counter}}">{{forloop.counter}}</option>
+        {% endfor %}
+        </select>
+        <input type="text" id="Ad.info" name="adinfo" placeholder ="Ad.info">
+        <input type="submit" value="Post"/>
+        </div>
+        </form>
+
+    </body>
+</html>

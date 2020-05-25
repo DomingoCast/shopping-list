@@ -1,0 +1,26 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{%static 'css/login.css' %}">
+        <title></title>
+    </head>
+    <body>
+    <h1>LOGIN</h1>
+    <form method="POST" action = "">{% csrf_token %}
+    <div>
+    <lable for "text"> Enter Username </label><br>
+    <input type="text" id="text" placeholder= "Enter Username here" name="username"><br>
+    <lable for "password"> Enter Password </label><br>
+    <input type="password" id="pass" name="password"><br>
+    <input type="submit" id = 'button'>
+    {% for message in messages %}
+        <p id="messages">{{message}}</p>
+    {% endfor %}
+    Don't have an account? <a href={% url 'register'%}>Sing up</a>
+   </form> 
+    </div>
+    </form>
+    </body>
+</html>
