@@ -1,16 +1,10 @@
+{% extends 'listapp/main.html'%}
+{% block content %}
 {% load static %}
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
     <h1>{{familia.name}}</h1>
     {% for lista in listas %}
     <span><a href = "/lista/{{lista.id}}/"> {{lista.name}}</a> </span>
+
     {% endfor %}
+{% endblock%}
     
-    </body>
-</html>

@@ -22,10 +22,22 @@ def registerPage(request):
 
             group = Group.objects.get(name='customers')
             l_user.groups.add(group)
+            customer = Customer()
+            customer.user = l_user
+            customer.name = username
+            customer.save()
 
-            Customer.objects.create(
-                user = l_user,
-                )
+            print('#################################################')
+            print(username)
+            print(l_user.customer)
+            familia = Familia()
+            familia.name = username+"_personal"
+            familia.save()
+            familia.miembro.add(customer)
+            familia.save()
+
+            print(familia, familia.miembro.all())
+
             messages.success(request, 'Account was created for ' + username)
             return redirect('login')
     context = {'form':form}
@@ -56,10 +68,16 @@ def home(request):
 
 def profilePage(request):
     l_user = request.user
+    print('########################################################################################')
     print('USER: ', l_user)
     l_customer = request.user.customer
     familias = l_customer.familia_set.all()
-    context = {'user':l_user, 'customer':l_customer, 'familias':familias}
+    listas = []
+    print(familias)
+    for familia in familias:
+        for lista in familia.lista.all():
+            listas.append(lista)
+    context = {'user':l_user, 'customer':l_customer, 'familias':familias, 'listas':listas}
     return render(request, 'listapp/profile.html', context)
 
 def congrats(request):
@@ -75,12 +93,13 @@ def familia(request, pk):
         return render(request, 'listapp/familia.html', context) 
     else:
         return redirect('profile')
+
 def lista(request, pk):
     la_lista = Lista.objects.get(id=pk)
     items = la_lista.item.all()
     la_lista.save()
-    context = {'lista':la_lista.name, 'items':items}
 
+    context = {'lista':la_lista.name, 'items':items}
     if request.method =='POST':
         if request.POST.get('name'):
             new_item= Item()
@@ -103,7 +122,33 @@ def lista(request, pk):
             la_lista.item.remove(pd)
             la_lista.save()
 
-
     return render(request,'listapp/lista.html',context)
+
+def new_lista(request):
+    customer = request.user.customer
+    familias = customer.familia_set.all()
+    print('FAMILIAS', familias)
+    pf_id = customer.familia_set.get(name = customer.name + '_personal').id
+    if request.method == 'POST':
+        if request.POST.get('familia'):
+            f_id= request.POST.get('familia')
+        else:
+            f_id = request.user.customer.familia_set(name = customer.name + '_personal').id
+        if request.POST.get('name'):
+            name = request.POST.get('name')
+        else:
+            name = 'untitled'
+
+        lista = Lista()
+        lista.name = name
+        familia = Familia.objects.get(id = f_id)
+        lista.save()
+        familia.save()
+        familia.lista.add(lista)
+        return redirect('/lista/'+str(lista.id))
+    
+    context = {'familias':familias}
+    return render(request, 'listapp/new_lista.html', context)
+
 def login2(request):
     return render(request,'listapp/login.html')

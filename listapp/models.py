@@ -9,6 +9,8 @@ class Customer(models.Model):
     phone = models.CharField( max_length=200)
     date_created = models.DateTimeField(auto_now_add=True)
     def __str__(self):
+        if not self.name:
+            return 'none'
         return self.name
 
 class Item(models.Model):

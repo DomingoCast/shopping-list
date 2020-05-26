@@ -1,16 +1,13 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-        <link rel="stylesheet" href="{%static 'css/lista.css' %}">
+{% extends 'listapp/main.html' %}
+{% load static%}
 
-    </head>
-    <body>
+{% block content  %}
+<link rel = "stylesheet" href="{%static 'css/lista.css'%}">
+
+{% load static %}
     <h1>{{lista}}</h1>
 
-        <form action="" method = "POST">
+    <form action="" method = "POST">{% csrf_token %}
         <div>
         <table class="Tabla">
             <tr >
@@ -49,6 +46,4 @@
         <input type="submit" value="Post"/>
         </div>
         </form>
-
-    </body>
-</html>
+{% endblock %}
