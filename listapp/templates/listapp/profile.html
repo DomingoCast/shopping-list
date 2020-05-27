@@ -1,7 +1,37 @@
 {% extends 'listapp/main.html' %}
+{% load static %}
 {% block content %}
-    <h1> {{user}}</h1>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;500&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="{%static 'css/profile.css'%}">
+<div class="mabody">
+    <h1 class="headlist"> {{user}}</h1>
+    <p> supo bitddd</p>
+    <h2 class="sechead"> FAMILIAS </h2>
+
+    <div class="familias container">
+        {% for familia in familias %}
+            <a href="/familia/{{familia.id}}/">
+                <div class="f_block bloque">
+                <span>{{familia}}</span>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+    <h2 class = "sechead"> LISTAS</h2>
+    <div class="listas container">
     {% for lista in listas %}
-            <span><a href="/lista/{{lista.id}}/"> {{lista}}<a></span>
+        <a href="/lista/{{lista.id}}/">
+            <div class="l_block bloque">
+                <span>{{lista}}</span>
+            </div>
+        </a>
     {% endfor %}
+    </div>
+<div class="bloque">
+    <span>hola</span>
+</div>
+<p> hola? </p>
+</div>
 {% endblock %}
+

@@ -1,0 +1,12 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/sidebar.css'%}">
+<div class = "sidebar">
+    <a href = "{% url 'profile' %}"> Profile </a>
+    {% for familia in familias %}
+    <a href="/familia/{{familia.id}}/">{{familia}}</a>
+    {% endfor %}
+    <a href="#"> New familia </a>
+    <a href="{% url 'newLista'%}"> New Lista</a>
+    <a href="{%url 'logout' %}"> Logout </a></span>
+</div>

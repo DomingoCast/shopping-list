@@ -1,0 +1,49 @@
+
+body{
+    font-family: Arial;
+    background: #e1f8fa;
+    text-align: center;
+    margin:auto;
+}
+div{
+    text-align:center;
+    background: #77c1c7;
+    margin:auto;
+    width: 50%;
+    padding: auto;
+    box-shadow:5px 5px 2px 2px #888888;
+}
+table{
+    border-collapse: collapse;
+    padding: 10p;
+}
+tr:hover {background-color: #4a7877} 
+#button{
+    padding-left: 7%;
+.titulos{
+    td{
+    font-size: 50px;
+    font-family: Georgia;
+    }
+}
+}
+input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+h1{
+    
+    letter-spacing: 103px;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 50px;
+}
+h1:hover{
+    color:white;
+    text-shadow: 2px 2px #ff0000;
+}
+th, td {
+  border-bottom: 1px solid #4a7877 ;
+}
+

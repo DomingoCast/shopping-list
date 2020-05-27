@@ -1,0 +1,15 @@
+{% extends 'listapp/main.html' %}
+{% load static %}
+{% block content %}
+<form action="" method = "POST">{% csrf_token %}
+<label id = "familia" > Familia: </label>
+<select id= "familia" name="familia" required>
+    {% for familia in familias %}
+    <option value ="{{familia.id}}"> {{familia}}</option>
+    {% endfor %}
+<select>
+<label id = "name"> Name: </label>
+<input type="text" id="name" name = "name" placeholder = "untitled">
+<input type="submit">
+</form>
+{% endblock %}

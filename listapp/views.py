@@ -27,16 +27,11 @@ def registerPage(request):
             customer.name = username
             customer.save()
 
-            print('#################################################')
-            print(username)
-            print(l_user.customer)
             familia = Familia()
             familia.name = username+"_personal"
             familia.save()
             familia.miembro.add(customer)
             familia.save()
-
-            print(familia, familia.miembro.all())
 
             messages.success(request, 'Account was created for ' + username)
             return redirect('login')
@@ -107,20 +102,29 @@ def lista(request, pk):
             new_item.status = 'Por comprar'
             if request.POST.get('adinfo'):
                 new_item.aditional_info = request.POST.get('adinfo')
+            if request.POST.get('cantidad'):
+                new_item.quantity = request.POST.get('cantidad')
+            if request.POST.get('tienda'):
+                new_item.store = request.POST.get('tienda')
+
 
             new_item.save()
             la_lista.save()
             la_lista.item.add(new_item)
             la_lista.save()
         if request.POST.get('compra'):
-            pd = int(request.POST.get('compra'))
-            c_item = la_lista.item.get(id = pd)
-            c_item.status = 'Comprado'
-            c_item.save()
+            compras = request.POST.getlist('compra') 
+            for n in compras:
+                pd = int(n)
+                c_item = la_lista.item.get(id = pd)
+                c_item.status = 'Comprado'
+                c_item.save()
         if request.POST.get('delete'):
-            pd = int(request.POST.get('delete'))
-            la_lista.item.remove(pd)
-            la_lista.save()
+            deletes = request.POST.getlist('delete')
+            for n in deletes:
+                pd = int(n)
+                la_lista.item.remove(pd)
+                la_lista.save()
 
     return render(request,'listapp/lista.html',context)
 
