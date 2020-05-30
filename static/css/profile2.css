@@ -1,0 +1,87 @@
+
+body{
+    background: #e1f8fa;
+    font-family: Arial;
+    text-align: center;
+    margin:auto;
+}
+.mabody{
+
+    font-family: 'Oswald', sans-serif;
+}
+.headlist{
+    text-align: center;
+    letter-spacing:100px;
+    margin:auto;
+    margin-bottom:20px;
+    margin-top: 20px;
+    font-size:50px;
+}
+.headlist:hover{
+    color:white;
+    text-shadow: 2px 2px #ff0000;
+}
+.sechead{
+    font-family: 'Oswald', sans-serif;
+    
+.sechead:hover{
+    color:white;
+    text-shadow: 2px 2px #ff0000;
+}
+}
+.container{
+    display: inline-flex;
+    justify-content:space-around;
+    flex-wrap: wrap;
+    flex: auto;
+}
+
+
+.bloque{
+  vertical-align: middle;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-bottom: 10%; background : #77c1c7; border-radius: 25px;
+    
+    height : 200px;
+    width: 270px;
+    -moz-box-shadow: 0 0 8px #ccc;
+    -webkit-box-shadow: 0 0 8px #ccc;
+    box-shadow: 0 0 3px #a8a8a8;
+}
+
+.bloque span {
+    font-size: 20px;
+    border-bottom: 1px solid black;
+    text-transform: uppercase;
+    color: black;
+    margin-top: 25%;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    align-items:center;
+}
+
+.bloque:hover{
+
+    height: 250px;
+    width: 350px;
+    border: 6px solid  #4a4a4a;
+    background:#f5f5f2 ;
+    border-radius: 38px;
+    
+
+}
+.bloque:hover span {
+    font-size: 40px;
+    font-family: 'Oswald', sans-serif;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-top: 15%;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: normal;
+    align-items:center;
+    color:white;
+    text-shadow: 2px 2px #ff0000;
+}
